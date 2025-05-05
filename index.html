@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LuminHeel - Lámpara Inteligente</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: #0a0a0a;
+      color: #ffffff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .header {
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.95);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
+
+    .logo {
+      font-size: 2rem;
+      letter-spacing: 3px;
+      color: #FFD700;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 300;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #FFD700;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 150px 20px 0;
+      position: relative;
+      background: #0a0a0a;
+    }
+
+    .music-container {
+      max-width: 1000px;
+      width: 95%;
+      margin: 0 auto;
+    }
+
+    .media-wrapper {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .image-wrapper {
+      position: relative;
+      width: 300px;
+      height: 300px;
+    }
+
+    #lamparaImg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: brightness(1.1);
+      transition: all 0.5s ease;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .music-button {
+      padding: 12px 25px;
+      background: #FFD700;
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      min-width: 200px;
+    }
+
+    .music-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+      padding: 100px 20px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+
+    footer {
+      padding: 50px 20px;
+      text-align: center;
+      background: #000;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 15px;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        margin-top: 15px;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        padding-top: 120px;
+      }
+
+      .media-wrapper {
+        flex-direction: column;
+      }
+
+      .controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .music-button {
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">LuminHeel</div>
+    <nav class="nav-links">
+      <a href="#features">Características</a>
+      <a href="#benefits">Beneficios</a>
+      <a href="#tech">Tecnología</a>
+      <a href="#contact">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="music-container">
+      <div class="media-wrapper">
+        <div class="image-wrapper">
+          <img id="lamparaImg" src="lampara1.jpg" alt="Lámpara Inteligente" onerror="this.style.display='none';" />
+        </div>
+        <div class="controls">
+          <button class="music-button" onclick="previous()">⏮ Anterior</button>
+          <button class="music-button" onclick="toggleMusic()">🎵 Iniciar Experiencia</button>
+          <button class="music-button" onclick="next()">⏭ Siguiente</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="feature-card">
+      <h2>✨ Características Principales</h2>
+      <ul>
+        <li>Altavoz Bluetooth integrado</li>
+        <li>Carga inalámbrica Qi</li>
+        <li>Sincronización de colores musical</li>
+        <li>Materiales reciclados</li>
+        <li>Control por app móvil</li>
+      </ul>
+    </div>
+
+    <div class="feature-card" id="benefits">
+      <h2>🚀 Beneficios Clave</h2>
+      <ul>
+        <li>Ambientes dinámicos personalizables</li>
+        <li>Diseño ecológico y sostenible</li>
+        <li>Tecnología multifuncional integrada</li>
+        <li>Fácil integración con sistemas smart home</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <p>© 2025 LuminHeel - Revolucionando la iluminación inteligente</p>
+    <p>📧 info@luminheel.com | 📱 +57 123 456 7890</p>
+    <p>📍 Bogotá, Colombia</p>
+  </footer>
+
+  <script>
+    let audioContext;
+    let analyser;
+    let audioElement;
+    let isPlaying = false;
+    let contador = 0;
+
+    const canciones = [
+      'musica1.mp3',
+      'musica2.mp3',
+      'musica3.mp3',
+      'musica4.mp3',
+      'musica5.mp3'
+    ];
+
+    const imagenes = [
+      'lampara1.jpg',
+      'lampara2.jpg',
+      'lampara3.jpg',
+      'lampara4.jpg',
+      'lampara5.jpg'
+    ];
+
+    function preloadResources() {
+      imagenes.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+      const audio = new Audio();
+      audio.src = canciones[0];
+    }
+
+    window.addEventListener('load', preloadResources);
+
+    async function initAudioSystem() {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioContext.createAnalyser();
+        audioElement = new Audio(canciones[contador]);
+        const source = audioContext.createMediaElementSource(audioElement);
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
+        analyser.fftSize = 512;
+
+        audioElement.addEventListener('ended', () => {
+          next();
+        });
+      }
+    }
+
+    async function toggleMusic() {
+      if (!isPlaying) {
+        await initAudioSystem();
+        try {
+          await audioElement.play();
+          isPlaying = true;
+          document.querySelector('.music-button:nth-child(2)').textContent = '⏹ Detener Experiencia';
+        } catch (error) {
+          console.error('Error al reproducir:', error);
+          alert('Haz clic para permitir la reproducción de audio');
+        }
+      } else {
+        audioElement.pause();
+        isPlaying = false;
+        document.querySelector('.music-button:nth-child(2)').textContent = '🎵 Iniciar Experiencia';
+      }
+    }
+
+    function updateImageAndAudio() {
+      document.getElementById('lamparaImg').src = imagenes[contador];
+      if (audioElement) {
+        audioElement.src = canciones[contador];
+        if (isPlaying) audioElement.play();
+      }
+    }
+
+    function next() {
+      contador = (contador + 1) % canciones.length;
+      updateImageAndAudio();
+    }
+
+    function previous() {
+      contador = (contador - 1 + canciones.length) % canciones.length;
+      updateImageAndAudio();
+    }
+  </script>
+</body>
+</html>
